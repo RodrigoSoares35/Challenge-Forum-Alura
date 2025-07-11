@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.Data;
 
+
+
 @Entity
 @Data
 @Table(name="topico")
@@ -21,6 +23,10 @@ public class Topico {
     private String autor;
     private String curso;
 
+
+    public Topico(){
+
+    }
     public Topico(@Valid CadastroTopicoDTO dados) {
         this.titulo = dados.titulo();
         this.mensagem = dados.mensagem();
@@ -29,5 +35,33 @@ public class Topico {
         this.autor = dados.autor();
         this.curso = dados.curso();
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public String getData_criacao() {
+        return data_criacao;
+    }
+
+    public String getEstado_topico() {
+        return estado_topico;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public String getCurso() {
+        return curso;
     }
 }
