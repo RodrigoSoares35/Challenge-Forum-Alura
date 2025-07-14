@@ -9,15 +9,20 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="topico")
+@Table(name="topico",uniqueConstraints = @UniqueConstraint(columnNames = {"titulo", "mensagem"}))
+
 public class Topico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String titulo;
+
+    @Column(nullable = false)
     private String mensagem;
+
     private String data_criacao;
     private String estado_topico;
     private String autor;
