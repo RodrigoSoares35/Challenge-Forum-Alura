@@ -1,5 +1,6 @@
 package challenge.forum.alura.model;
 
+import challenge.forum.alura.dto.AtualizarTopicoDTO;
 import challenge.forum.alura.dto.CadastroTopicoDTO;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
@@ -24,7 +25,7 @@ public class Topico {
     private String mensagem;
 
     private String data_criacao;
-    private String estado_topico;
+    private boolean estado_topico;
     private String autor;
     private String curso;
 
@@ -58,7 +59,7 @@ public class Topico {
         return data_criacao;
     }
 
-    public String getEstado_topico() {
+    public boolean isEstado_topico() {
         return estado_topico;
     }
 
@@ -68,5 +69,31 @@ public class Topico {
 
     public String getCurso() {
         return curso;
+    }
+
+    public void atualizarInformacoes(@Valid AtualizarTopicoDTO dados) {
+        if (dados.titulo() != null) {
+            this.titulo = dados.titulo();
+        }
+        if (dados.mensagem() != null) {
+            this.mensagem = dados.mensagem();
+        }
+        if (dados.data_criacao() != null) {
+            this.data_criacao = dados.data_criacao();
+        }
+
+        if (dados.autor() != null) {
+            this.autor = dados.autor();
+        }
+        if (dados.curso() != null) {
+            this.curso = dados.curso();
+        }
+
+    }
+
+    public void excluir() {
+        this.estado_topico = false;
+
+
     }
 }

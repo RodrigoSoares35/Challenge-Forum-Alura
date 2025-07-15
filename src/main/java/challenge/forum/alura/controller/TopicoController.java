@@ -1,5 +1,6 @@
 package challenge.forum.alura.controller;
 
+import challenge.forum.alura.dto.AtualizarTopicoDTO;
 import challenge.forum.alura.dto.CadastroTopicoDTO;
 import challenge.forum.alura.dto.ListagemTopicoDTO;
 import challenge.forum.alura.model.Topico;
@@ -41,6 +42,28 @@ public class TopicoController {
     return topico
             .map(t -> ResponseEntity.ok(new ListagemTopicoDTO(t)))
             .orElseGet(() -> ResponseEntity.notFound().build());
+
+  }
+  @PutMapping
+  @Transactional
+  public void atualizar(@RequestBody @Valid AtualizarTopicoDTO dados) {
+    var topico = repository.getReferenceById(dados.id());
+    topico.atualizarInformacoes(dados);
+  }
+
+  // ATUYALIZAR PARA FALSE
+//  @DeleteMapping("/{id}")
+//  @Transactional
+//  public void excluir(@PathVariable Long id) {
+//    var topico = repository.getReferenceById(id);
+//    topico.excluir();
+//  }
+
+  // DELETA DO BANCO
+  @DeleteMapping("/{id}")
+  @Transactional
+  public void excluir(@PathVariable Long id) {
+    repository.deleteById(id);
 
   }
 }

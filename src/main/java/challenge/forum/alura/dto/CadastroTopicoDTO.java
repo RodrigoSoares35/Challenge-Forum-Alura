@@ -13,8 +13,8 @@ public record CadastroTopicoDTO(
                                 @NotBlank
                                 String data_criacao,
 
-                                @NotBlank
-                                String estado_topico,
+
+                                boolean estado_topico,
 
                                 @NotBlank
                                 String autor,
