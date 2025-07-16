@@ -31,9 +31,9 @@ public class TopicoController {
   }
 
   @GetMapping
-  public Page<ListagemTopicoDTO> listar(@PageableDefault(size = 10, sort = ("titulo")) Pageable paginacao) {
-    return repository.findAll(paginacao).map(ListagemTopicoDTO::new);
-
+  public ResponseEntity<Page<ListagemTopicoDTO>> listar(@PageableDefault(size = 10, sort = ("titulo")) Pageable paginacao) {
+    var page = repository.findAll(paginacao).map(ListagemTopicoDTO::new);
+    return ResponseEntity.ok(page);
   }
 
   @GetMapping("/{id}")
@@ -52,20 +52,12 @@ public class TopicoController {
     topico.atualizarInformacoes(dados);
   }
 
-  // ATUALIZAR PARA FALSE
-//  @DeleteMapping("/{id}")
-//  @Transactional
-//  public void excluir(@PathVariable Long id) {
-//    var topico = repository.getReferenceById(id);
-//    topico.excluir();
-//  }
 
-  // DELETA DO BANCO
   @DeleteMapping("/{id}")
   @Transactional
-  public void excluir(@PathVariable Long id) {
+  public ResponseEntity excluir(@PathVariable Long id) {
     repository.deleteById(id);
-
+    return ResponseEntity.noContent().build();
   }
 }
 

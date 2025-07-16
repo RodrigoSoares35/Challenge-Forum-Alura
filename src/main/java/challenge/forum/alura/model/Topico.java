@@ -11,7 +11,6 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name="topico",uniqueConstraints = @UniqueConstraint(columnNames = {"titulo", "mensagem"}))
-
 public class Topico {
 
     @Id
@@ -25,7 +24,7 @@ public class Topico {
     private String mensagem;
 
     private String data_criacao;
-    private boolean estado_topico;
+    private String estado_topico;
     private String autor;
     private String curso;
 
@@ -59,7 +58,7 @@ public class Topico {
         return data_criacao;
     }
 
-    public boolean isEstado_topico() {
+    public String getEstado_topico() {
         return estado_topico;
     }
 
@@ -81,6 +80,9 @@ public class Topico {
         if (dados.data_criacao() != null) {
             this.data_criacao = dados.data_criacao();
         }
+        if (dados.estado_topico() != null) {
+            this.estado_topico = dados.estado_topico();
+        }
 
         if (dados.autor() != null) {
             this.autor = dados.autor();
@@ -91,9 +93,4 @@ public class Topico {
 
     }
 
-    public void excluir() {
-        this.estado_topico = false;
-
-
-    }
 }

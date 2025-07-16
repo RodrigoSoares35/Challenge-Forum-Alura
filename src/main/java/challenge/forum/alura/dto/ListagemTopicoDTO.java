@@ -5,7 +5,7 @@ import challenge.forum.alura.model.Topico;
 public record ListagemTopicoDTO(String titulo,
                                 String mensagem,
                                 String data_criacao,
-                                boolean estado_topico,
+                                String estado_topico,
                                 String autor,
                                 String curso ) {
 
@@ -13,7 +13,7 @@ public record ListagemTopicoDTO(String titulo,
         this(   topico.getTitulo(),
                 topico.getMensagem(),
                 topico.getData_criacao(),
-                topico.isEstado_topico(),
+                topico.getEstado_topico(),
                 topico.getAutor(),
                 topico.getCurso()
         );

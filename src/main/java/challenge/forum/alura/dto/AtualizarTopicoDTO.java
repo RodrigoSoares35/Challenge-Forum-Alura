@@ -14,9 +14,7 @@ public record AtualizarTopicoDTO(
                                  @NotBlank
                                  String data_criacao,
 
-
-                                 boolean estado_topico,
-
+                                 String estado_topico,
                                  @NotBlank
                                  String autor,
 
