@@ -2,6 +2,7 @@ package challenge.forum.alura.controller;
 
 import challenge.forum.alura.dto.AtualizarTopicoDTO;
 import challenge.forum.alura.dto.CadastroTopicoDTO;
+import challenge.forum.alura.dto.DetalheTopicoDTO;
 import challenge.forum.alura.dto.ListagemTopicoDTO;
 import challenge.forum.alura.model.Topico;
 import challenge.forum.alura.repository.TopicoRepository;
@@ -37,10 +38,10 @@ public class TopicoController {
 
   @GetMapping("/{id}")
   @Transactional(readOnly = true)
-  public ResponseEntity<ListagemTopicoDTO> detalhe(@PathVariable Long id) {
+  public ResponseEntity<DetalheTopicoDTO> detalhe(@PathVariable Long id) {
     Optional<Topico> topico = repository.findById(id);
     return topico
-            .map(t -> ResponseEntity.ok(new ListagemTopicoDTO(t)))
+            .map(t -> ResponseEntity.ok(new DetalheTopicoDTO(t)))
             .orElseGet(() -> ResponseEntity.notFound().build());
 
   }
@@ -51,7 +52,7 @@ public class TopicoController {
     topico.atualizarInformacoes(dados);
   }
 
-  // ATUYALIZAR PARA FALSE
+  // ATUALIZAR PARA FALSE
 //  @DeleteMapping("/{id}")
 //  @Transactional
 //  public void excluir(@PathVariable Long id) {
