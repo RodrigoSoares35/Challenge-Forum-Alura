@@ -2,6 +2,7 @@ package challenge.forum.alura.controller;
 
 import challenge.forum.alura.dto.UsuarioLoginDTO;
 import challenge.forum.alura.login.Usuario;
+import challenge.forum.alura.security.DadosTokenJWT;
 import challenge.forum.alura.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,10 @@ public class UsuarioCntroller {
 
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid UsuarioLoginDTO dados) {
-    var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-    var authentication =  manager.authenticate(token);
+    var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
+    var authentication =  manager.authenticate(authenticationToken);
 
-    return  ResponseEntity.ok(tokenService.gerarToken((Usuario) authentication.getPrincipal()));
+    var tokenJWT =   tokenService.gerarToken((Usuario) authentication.getPrincipal());
+    return  ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
     }
 }
