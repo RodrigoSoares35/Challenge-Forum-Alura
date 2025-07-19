@@ -11,9 +11,6 @@ public record CadastroTopicoDTO(
                                 String mensagem,
 
                                 @NotBlank
-                                String data_criacao,
-
-                                @NotBlank
                                 String estado_topico,
 
                                 @NotBlank

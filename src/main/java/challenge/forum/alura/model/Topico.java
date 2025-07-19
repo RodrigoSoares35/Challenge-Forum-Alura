@@ -2,10 +2,13 @@ package challenge.forum.alura.model;
 
 import challenge.forum.alura.dto.AtualizarTopicoDTO;
 import challenge.forum.alura.dto.CadastroTopicoDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDate;
 
 
 @Entity
@@ -23,7 +26,10 @@ public class Topico {
     @Column(nullable = false)
     private String mensagem;
 
-    private String data_criacao;
+    @CreationTimestamp
+    @Column(name = "data_criacao", updatable = false)
+    private LocalDate data_Criacao;
+
     private String estado_topico;
     private String autor;
     private String curso;
@@ -35,7 +41,6 @@ public class Topico {
     public Topico(@Valid CadastroTopicoDTO dados) {
         this.titulo = dados.titulo();
         this.mensagem = dados.mensagem();
-        this.data_criacao = dados.data_criacao();
         this.estado_topico = dados.estado_topico();
         this.autor = dados.autor();
         this.curso = dados.curso();
@@ -54,10 +59,6 @@ public class Topico {
         return mensagem;
     }
 
-    public String getData_criacao() {
-        return data_criacao;
-    }
-
     public String getEstado_topico() {
         return estado_topico;
     }
@@ -70,6 +71,10 @@ public class Topico {
         return curso;
     }
 
+    public LocalDate getData_Criacao() {
+        return data_Criacao;
+    }
+
     public void atualizarInformacoes(@Valid AtualizarTopicoDTO dados) {
         if (dados.titulo() != null) {
             this.titulo = dados.titulo();
@@ -77,9 +82,7 @@ public class Topico {
         if (dados.mensagem() != null) {
             this.mensagem = dados.mensagem();
         }
-        if (dados.data_criacao() != null) {
-            this.data_criacao = dados.data_criacao();
-        }
+
         if (dados.estado_topico() != null) {
             this.estado_topico = dados.estado_topico();
         }
