@@ -2,7 +2,8 @@ package challenge.forum.alura.dto;
 
 import challenge.forum.alura.model.Topico;
 
-public record ListagemTopicoDTO(String titulo,
+public record ListagemTopicoDTO(
+                                String titulo,
                                 String mensagem,
                                 String data_criacao,
                                 String estado_topico,

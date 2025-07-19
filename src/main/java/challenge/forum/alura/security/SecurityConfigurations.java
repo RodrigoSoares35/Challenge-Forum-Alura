@@ -1,6 +1,5 @@
 package challenge.forum.alura.security;
 
-import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,28 +22,6 @@ public class SecurityConfigurations {
     @Autowired
     private SecurityFilter securityFilter;
 
-
-    //    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        return http.csrf(csrf -> csrf.disable())
-//                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .and().authorizeHttpRequests()
-//                .requestMatchers(HttpMethod.POST, "/login").permitAll()
-//                .requestMatchers().permitAll()
-//                .anyRequest().authenticated()
-//                .build();
-//    }
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//    return
-//            http.csrf(csrf -> csrf.disable())
-//                    .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                    .authorizeHttpRequests(req -> {
-//                        req.requestMatchers("/login").permitAll();
-//                        req.anyRequest().authenticated();}
-//                    )
-//                    .build();
-//}
 @Bean
 public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http
@@ -59,7 +36,6 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
             .build();
 }
 
-
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
@@ -69,7 +45,5 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
 
 }
