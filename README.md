@@ -1,9 +1,10 @@
 # Challenge  Forum Alura.
 
 ## Introdução 🖋️
-API desenvolvinda utilizando Java Spring Boot. A API tem como objetivo cadastrar no banco de dados informações sobre o forum.
+API desenvolvinda utilizando Java Spring Boot. A API tem como objetivo gerenciar as atividade no forum, 
+salvando no banco de dados informações sobre o tópico a ser debatido no forum.
 
-## Funções⚙️
+## Funções da API⚙️
  - Cadastrar novo tópico.
  - Listar todos os tópicos.
  - Detalhar tópico especifico por id.
